@@ -1,5 +1,6 @@
 //
 // swift run reorder -file Sources/Conference/Conference.swift > output.swift
+// swift run reorder -index .build/x86_64-apple-macosx/debug/index/store
 //
 
 import Foundation
@@ -23,7 +24,13 @@ for (cmd, value) in commands {
     let content = try Data(contentsOf: URL(fileURLWithPath: value))
     let result = try Processor().process(content)
     out.write(result)
-    break
+  case "index":
+    err.write("Processing \(value)\n")
+    for (path, content) in StoreIndexer(URL(fileURLWithPath: value)).process(symbolName: "Conference") {
+      out.write("File: \(path)\n")
+      out.write(content)
+      out.write("\n")
+    }
   default:
     err.write("Error: Unknown command: \(cmd)\n")
     exit(1)
