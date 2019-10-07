@@ -1,3 +1,5 @@
 # Reorder Swift Code
 
-nope
+Presentation slides
+
+‪https://speakerdeck.com/krzyzanowskim/swiftly-swift-manipulation-dot-dot-dot-with-swift‬
