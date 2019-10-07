@@ -2,4 +2,4 @@
 
 Presentation slides
 
-‪https://speakerdeck.com/krzyzanowskim/swiftly-swift-manipulation-dot-dot-dot-with-swift‬
+‪https://speakerdeck.com/krzyzanowskim/swiftly-swift-manipulation-dot-dot-dot-with-swift
