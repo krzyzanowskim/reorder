@@ -24,7 +24,7 @@ public struct StoreIndexer {
   }
 
   public func process(symbolName: String) -> [Path: String] {
-    guard let lib = try? IndexStoreLibrary(dylibPath: "/Applications/Xcode_11.1_GM.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libIndexStore.dylib"),
+    guard let lib = try? IndexStoreLibrary(dylibPath: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libIndexStore.dylib"),
         let index = try? IndexStoreDB(storePath: indexURL.path, databasePath: NSTemporaryDirectory() + "index_\(getpid())", library: lib, listenToUnitEvents: false)
       else {
         fatalError("Cannot process.")
