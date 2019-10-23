@@ -4,6 +4,26 @@ import SwiftSyntax
 class Indexer: SyntaxVisitor {
 
   private var functions: Array<DeclSyntax> = []
+  
+  func visit(_ node: AssociatedtypeDeclSyntax) -> SyntaxVisitorContinueKind{
+    self.functions.append(node)
+    return .skipChildren
+  }
+
+  func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind{
+    self.functions.append(node)
+    return .skipChildren
+  }
+
+  func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind{
+    self.functions.append(node)
+    return .skipChildren
+  }
+
+  func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind{
+    self.functions.append(node)
+    return .skipChildren
+  }
 
   func visit(_ node: DeinitializerDeclSyntax) -> SyntaxVisitorContinueKind{
     self.functions.append(node)

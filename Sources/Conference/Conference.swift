@@ -1,4 +1,3 @@
-import Foundation
 
 public class Conference {
 
@@ -76,3 +75,12 @@ public class Conference {
   
   fileprivate var attendees: Set<String>
 }
+
+protocol Container {
+    mutating func append(_ item: Item)
+    var count: Int { get }
+    subscript(i: Int) -> Item { get }
+    associatedtype Item
+}
+
+import Foundation

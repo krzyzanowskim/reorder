@@ -22,16 +22,48 @@ struct Visitor: SyntaxVisitor {
       return lhs.rawValue < rhs.rawValue
     }
     
-    case isTypeAlias = 0
+    case isImport = 0
+    case isAssociatedtype = 1
+    case isTypealias = 2
     case isVariable = 10
-    case isInit = 20
-    case isDeinit = 30
+    case isInitializer = 20
+    case isDeinitializer = 30
     case isEnum = 40
-    case isFunc = 70
-    case other = 999
+    case isFunction = 70
+    case isOperator = 70
+    case isPrecedenceGroup = 71
+    case notReordered = 999
   }
   
-  var declSyntax : DeclSyntaxKind = .other
+  var declSyntax : DeclSyntaxKind = .notReordered
+
+  mutating func visit(_ node: AssociatedtypeDeclSyntax) -> SyntaxVisitorContinueKind {
+    
+    self.declSyntax = .isAssociatedtype
+    self.process(node.modifiers)
+    return .skipChildren
+  }
+
+  mutating func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind {
+    
+    self.declSyntax = .isImport
+    self.process(node.modifiers)
+    return .skipChildren
+  }
+
+  mutating func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind {
+    
+    self.declSyntax = .isOperator
+    self.process(node.modifiers)
+    return .skipChildren
+  }
+
+  mutating func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind {
+    
+    self.declSyntax = .isOperator
+    self.process(node.modifiers)
+    return .skipChildren
+  }
 
   mutating func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
     
@@ -42,28 +74,28 @@ struct Visitor: SyntaxVisitor {
 
   mutating func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isInit
+    self.declSyntax = .isInitializer
     self.process(node.modifiers)
     return .skipChildren
   }
 
   mutating func visit(_ node: DeinitializerDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isDeinit
+    self.declSyntax = .isDeinitializer
     self.process(node.modifiers)
     return .skipChildren
   }
   
   mutating func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isFunc
+    self.declSyntax = .isFunction
     self.process(node.modifiers)
     return .skipChildren
   }
 
   mutating func visit(_ node: TypealiasDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isTypeAlias
+    self.declSyntax = .isTypealias
     self.process(node.modifiers)
     return .skipChildren
   }
