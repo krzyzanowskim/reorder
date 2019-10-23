@@ -1,96 +1,75 @@
 import Foundation
 
-//public class Conference {
-//
-//  public enum FooPublic {}
-//  internal enum FooInternal {}
-//  private enum FooPrivate {}
-//  
-//  internal typealias Line = String
-//
-//  internal func add(attendee: String) {
-//    self.attendees.insert(attendee)
-//  }
-//
-//  internal func add(sponsor: String) {
-//    self.sponsors.insert(sponsor)
-//  }
-//  private var sponsors: Set<String>
-//
-//  deinit {
-//    fatalError("Thank you for playing Wing Commander")
-//  }
-//  public var name: String
-//
-//  internal func add(cost: Decimal) {
-//    self.costs.append(cost)
-//  }
-//
-//  private var costs: Array<Decimal>
-//
-//  private init() {
-//    self.name = "FrenchKit"
-//    self.venue = "Bâtiment"
-//    self.attendees = []
-//    self.sponsors = []
-//    self.costs = []
-//  }
-//
-//  public func totalCosts() -> Decimal {
-//    self.costs.reduce(0, { $0 + $1 })
-//  }
-//
-//  private func statement() -> Array<Line> {
-//    var lines: Array<Line> = []
-//
-//    for attendee in self.attendees {
-//      lines.append("Attendee:\t\(attendee)")
-//    }
-//
-//    for sponsor in self.sponsors {
-//      lines.append("Sponsor:\t\(sponsor)")
-//    }
-//
-//    for cost in self.costs {
-//      lines.append("Cost:\t€\(cost)")
-//    }
-//
-//    return lines
-//  }
-//
-//  public let venue: String
-//
-//  internal func printStatement() {
-//    self.statement().forEach({
-//      print($0)
-//    })
-//  }
-//
-//  public init(name: String, venue: String) {
-//    self.name = name
-//    self.venue = venue
-//    self.attendees = []
-//    self.sponsors = []
-//    self.costs = []
-//  }
-//  
-//  fileprivate var attendees: Set<String>
-//}
+public class Conference {
+  internal typealias Line = String
 
-//protocol Container {
-//    mutating func append(_ item: Item)
-//    var count: Int { get }
-//    subscript(i: Int) -> Item { get }
-//    associatedtype Item
-//}
+  public var name: String
+  public let venue: String
+  private var sponsors: Set<String>
+  private var costs: Array<Decimal>
+  fileprivate var attendees: Set<String>
 
-infix operator +-: AdditionPrecedence
+  public init(name: String, venue: String) {
+    self.name = name
+    self.venue = venue
+    self.attendees = []
+    self.sponsors = []
+    self.costs = []
+  }
 
-struct Vector2D {
-  var x = 0.0
-  var y = 0.0
-  
-  static func +- (left: Vector2D, right: Vector2D) -> Vector2D {
-    return Vector2D(x: left.x + right.x, y: left.y - right.y)
+  private init() {
+    self.name = "FrenchKit"
+    self.venue = "Bâtiment"
+    self.attendees = []
+    self.sponsors = []
+    self.costs = []
+  }
+
+  deinit {
+    fatalError("Thank you for playing Wing Commander")
+  }
+
+  public enum FooPublic {}
+  internal enum FooInternal {}
+  private enum FooPrivate {}
+
+  public func totalCosts() -> Decimal {
+    self.costs.reduce(0, { $0 + $1 })
+  }
+
+  internal func add(attendee: String) {
+    self.attendees.insert(attendee)
+  }
+
+  internal func add(sponsor: String) {
+    self.sponsors.insert(sponsor)
+  }
+
+  internal func add(cost: Decimal) {
+    self.costs.append(cost)
+  }
+
+  internal func printStatement() {
+    self.statement().forEach({
+      print($0)
+    })
+  }
+
+  private func statement() -> Array<Line> {
+    var lines: Array<Line> = []
+
+    for attendee in self.attendees {
+      lines.append("Attendee:\t\(attendee)")
+    }
+
+    for sponsor in self.sponsors {
+      lines.append("Sponsor:\t\(sponsor)")
+    }
+
+    for cost in self.costs {
+      lines.append("Cost:\t€\(cost)")
+    }
+
+    return lines
   }
 }
