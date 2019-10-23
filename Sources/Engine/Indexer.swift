@@ -15,10 +15,10 @@ class Indexer: SyntaxVisitor {
     return .skipChildren
   }
 
-  func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind{
-    self.functions.append(node)
-    return .skipChildren
-  }
+//  func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind{
+//    self.functions.append(node)
+//    return .skipChildren
+//  }
 
   func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind{
     self.functions.append(node)

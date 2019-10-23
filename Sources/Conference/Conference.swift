@@ -77,9 +77,20 @@ import Foundation
 //  fileprivate var attendees: Set<String>
 //}
 
-protocol Container {
-    mutating func append(_ item: Item)
-    var count: Int { get }
-    subscript(i: Int) -> Item { get }
-    associatedtype Item
+//protocol Container {
+//    mutating func append(_ item: Item)
+//    var count: Int { get }
+//    subscript(i: Int) -> Item { get }
+//    associatedtype Item
+//}
+
+infix operator +-: AdditionPrecedence
+
+struct Vector2D {
+  var x = 0.0
+  var y = 0.0
+  
+  static func +- (left: Vector2D, right: Vector2D) -> Vector2D {
+    return Vector2D(x: left.x + right.x, y: left.y - right.y)
+  }
 }

@@ -66,12 +66,12 @@ struct Visitor: SyntaxVisitor {
     return .skipChildren
   }
 
-  mutating func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind {
-    
-    self.declSyntax = .isPrecedenceGroup
-    self.process(node.modifiers)
-    return .skipChildren
-  }
+//  mutating func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind {
+//    
+//    self.declSyntax = .isPrecedenceGroup
+//    self.process(node.modifiers)
+//    return .skipChildren
+//  }
 
   mutating func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
     
