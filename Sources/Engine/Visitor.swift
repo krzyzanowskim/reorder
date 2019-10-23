@@ -79,19 +79,19 @@ struct Visitor: SyntaxVisitor {
     guard let modifiers = modifiers else {
       return self.accessLevel = .internalKeyword
     }
-    let isPrivate = modifiers.contains(where: { $0.name.tokenKind == .privateKeyword || $0.name.tokenKind == .fileprivateKeyword })
+    
+    let isFilePrivate = modifiers.contains(where: { $0.name.tokenKind == .fileprivateKeyword })
+    let isPrivate = modifiers.contains(where: { $0.name.tokenKind == .privateKeyword })
     let isPublic = modifiers.contains(where: { $0.name.tokenKind == .publicKeyword })
-    var isInternal = modifiers.contains(where: { $0.name.tokenKind == .internalKeyword })
-
-    if !isInternal && !isPrivate && !isPublic {
-      isInternal = true
-    }
+    let isInternal = modifiers.contains(where: { $0.name.tokenKind == .internalKeyword })
 
     if isPublic {
       self.accessLevel = .publicKeyword
     } else if isPrivate {
       self.accessLevel = .privateKeyword
-    } else if isInternal {
+    } else if isFilePrivate {
+      self.accessLevel = .fileprivateKeyword
+    } else {
       self.accessLevel = .internalKeyword
     }
   }

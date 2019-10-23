@@ -57,7 +57,6 @@ public class Conference {
 
     return lines
   }
-  private var attendees: Set<String>
 
   public let venue: String
 
@@ -74,4 +73,6 @@ public class Conference {
     self.sponsors = []
     self.costs = []
   }
+  
+  fileprivate var attendees: Set<String>
 }
