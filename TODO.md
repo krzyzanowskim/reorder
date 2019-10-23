@@ -5,6 +5,7 @@
 - [ ] more better tests
 - [ ] simplifying coding in the project
 - [ ] documentation
+- [ ] support multiple DeclSyntax that need to visit their children in the same file 
 
 ## Code Beautifiers
 
@@ -21,10 +22,11 @@
 - [x] FunctionDeclSyntax
 - [x] InitializerDeclSyntax
 - [x] DeinitializerDeclSyntax
-- [x] ImportDeclSyntax
+- [x] ImportDeclSyntax - not working properly
 - [x] VariableDeclSyntax
-- [x] OperatorDeclSyntax
-- [x] PrecedenceGroupDeclSyntax
+- [x] OperatorDeclSyntax - not tested
+- [x] PrecedenceGroupDeclSyntax - not tested
+- [x] SubscriptDeclSyntax
 
 ### DeclSyntax that need to visit their children:
 
@@ -32,8 +34,7 @@
 - [ ] StructDeclSyntax
 - [ ] ProtocolDeclSyntax
 - [ ] ExtensionDeclSyntax
-- [x] EnumDeclSyntax - 50% the children part is not done
-- [] SubscriptDeclSyntax
+- [ ] EnumDeclSyntax - 50% the children part is not done
 
 ### DeclSyntax that I don't know what they represent:
 

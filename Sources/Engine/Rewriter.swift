@@ -25,10 +25,14 @@ class Rewriter: SyntaxRewriter {
   override func visit(_ node: AssociatedtypeDeclSyntax) -> DeclSyntax {
     sortedFunctions.removeFirst()
   }
-
-  override func visit(_ node: ImportDeclSyntax) -> DeclSyntax {
+  
+  override func visit(_ node: SubscriptDeclSyntax) -> DeclSyntax {
     sortedFunctions.removeFirst()
   }
+
+//  override func visit(_ node: ImportDeclSyntax) -> DeclSyntax {
+//    sortedFunctions.removeFirst()
+//  }
 
   override func visit(_ node: InitializerDeclSyntax) -> DeclSyntax {
     sortedFunctions.removeFirst()

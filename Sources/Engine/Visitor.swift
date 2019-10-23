@@ -30,8 +30,9 @@ struct Visitor: SyntaxVisitor {
     case isDeinitializer = 30
     case isEnum = 40
     case isFunction = 70
-    case isOperator = 70
-    case isPrecedenceGroup = 71
+    case isSubscript = 71
+    case isOperator = 80
+    case isPrecedenceGroup = 81
     case notReordered = 999
   }
   
@@ -43,13 +44,20 @@ struct Visitor: SyntaxVisitor {
     self.process(node.modifiers)
     return .skipChildren
   }
-
-  mutating func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind {
+  
+  mutating func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isImport
+    self.declSyntax = .isSubscript
     self.process(node.modifiers)
     return .skipChildren
   }
+
+//  mutating func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind {
+//    
+//    self.declSyntax = .isImport
+//    self.process(node.modifiers)
+//    return .skipChildren
+//  }
 
   mutating func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind {
     
@@ -60,7 +68,7 @@ struct Visitor: SyntaxVisitor {
 
   mutating func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind {
     
-    self.declSyntax = .isOperator
+    self.declSyntax = .isPrecedenceGroup
     self.process(node.modifiers)
     return .skipChildren
   }
@@ -115,7 +123,6 @@ struct Visitor: SyntaxVisitor {
     let isFilePrivate = modifiers.contains(where: { $0.name.tokenKind == .fileprivateKeyword })
     let isPrivate = modifiers.contains(where: { $0.name.tokenKind == .privateKeyword })
     let isPublic = modifiers.contains(where: { $0.name.tokenKind == .publicKeyword })
-    let isInternal = modifiers.contains(where: { $0.name.tokenKind == .internalKeyword })
 
     if isPublic {
       self.accessLevel = .publicKeyword

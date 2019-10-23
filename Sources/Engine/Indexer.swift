@@ -9,6 +9,11 @@ class Indexer: SyntaxVisitor {
     self.functions.append(node)
     return .skipChildren
   }
+  
+  func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind{
+    self.functions.append(node)
+    return .skipChildren
+  }
 
   func visit(_ node: PrecedenceGroupDeclSyntax) -> SyntaxVisitorContinueKind{
     self.functions.append(node)
@@ -20,10 +25,10 @@ class Indexer: SyntaxVisitor {
     return .skipChildren
   }
 
-  func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind{
-    self.functions.append(node)
-    return .skipChildren
-  }
+//  func visit(_ node: ImportDeclSyntax) -> SyntaxVisitorContinueKind{
+//    self.functions.append(node)
+//    return .skipChildren
+//  }
 
   func visit(_ node: DeinitializerDeclSyntax) -> SyntaxVisitorContinueKind{
     self.functions.append(node)
