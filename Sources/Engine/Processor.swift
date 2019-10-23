@@ -22,7 +22,7 @@ public class Processor {
     var visitor = Indexer()
     parsed.walk(&visitor)
 
-    // Reqrite file using visitor
+    // Rewrite file using visitor
     let rewritten = Rewriter(visitor).visit(parsed)
 
     var output = StringOutputStream()

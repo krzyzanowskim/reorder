@@ -1,14 +1,12 @@
 import Foundation
 
 public class Conference {
-  public var name: String
-  public let venue: String
 
+  public enum FooPublic {}
+  internal enum FooInternal {}
+  private enum FooPrivate {}
+  
   internal typealias Line = String
-
-  private var attendees: Set<String>
-  private var sponsors: Set<String>
-  private var costs: Array<Decimal>
 
   internal func add(attendee: String) {
     self.attendees.insert(attendee)
@@ -17,14 +15,18 @@ public class Conference {
   internal func add(sponsor: String) {
     self.sponsors.insert(sponsor)
   }
+  private var sponsors: Set<String>
 
   deinit {
     fatalError("Thank you for playing Wing Commander")
   }
+  public var name: String
 
   internal func add(cost: Decimal) {
     self.costs.append(cost)
   }
+
+  private var costs: Array<Decimal>
 
   private init() {
     self.name = "FrenchKit"
@@ -55,6 +57,9 @@ public class Conference {
 
     return lines
   }
+  private var attendees: Set<String>
+
+  public let venue: String
 
   internal func printStatement() {
     self.statement().forEach({
