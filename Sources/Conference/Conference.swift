@@ -1,29 +1,20 @@
 import Foundation
 
 public class Conference {
-  public var name: String
-  public let venue: String
-
   internal typealias Line = String
 
-  private var attendees: Set<String>
+  public var name: String
+  public let venue: String
   private var sponsors: Set<String>
   private var costs: Array<Decimal>
+  fileprivate var attendees: Set<String>
 
-  internal func add(attendee: String) {
-    self.attendees.insert(attendee)
-  }
-
-  internal func add(sponsor: String) {
-    self.sponsors.insert(sponsor)
-  }
-
-  deinit {
-    fatalError("Thank you for playing Wing Commander")
-  }
-
-  internal func add(cost: Decimal) {
-    self.costs.append(cost)
+  public init(name: String, venue: String) {
+    self.name = name
+    self.venue = venue
+    self.attendees = []
+    self.sponsors = []
+    self.costs = []
   }
 
   private init() {
@@ -34,8 +25,34 @@ public class Conference {
     self.costs = []
   }
 
+  deinit {
+    fatalError("Thank you for playing Wing Commander")
+  }
+
+  public enum FooPublic {}
+  internal enum FooInternal {}
+  private enum FooPrivate {}
+
   public func totalCosts() -> Decimal {
     self.costs.reduce(0, { $0 + $1 })
+  }
+
+  internal func add(attendee: String) {
+    self.attendees.insert(attendee)
+  }
+
+  internal func add(sponsor: String) {
+    self.sponsors.insert(sponsor)
+  }
+
+  internal func add(cost: Decimal) {
+    self.costs.append(cost)
+  }
+
+  internal func printStatement() {
+    self.statement().forEach({
+      print($0)
+    })
   }
 
   private func statement() -> Array<Line> {
@@ -54,19 +71,5 @@ public class Conference {
     }
 
     return lines
-  }
-
-  internal func printStatement() {
-    self.statement().forEach({
-      print($0)
-    })
-  }
-
-  public init(name: String, venue: String) {
-    self.name = name
-    self.venue = venue
-    self.attendees = []
-    self.sponsors = []
-    self.costs = []
   }
 }
